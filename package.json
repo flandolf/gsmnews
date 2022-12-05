@@ -1,0 +1,19 @@
+{
+  "name": "gsmnews",
+  "version": "1.0.0",
+  "description": "discordjs webhook and scraper",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "js"
+  ],
+  "author": "andy",
+  "license": "MIT",
+  "dependencies": {
+    "@dumpy/andylib": "^3.2.1",
+    "discord.js": "^14.7.1",
+    "puppeteer": "^19.3.0"
+  }
+}
