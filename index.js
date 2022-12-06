@@ -2,6 +2,7 @@ const { WebhookClient } = require('discord.js');
 const al = require('@dumpy/andylib');
 const l = new al.logger()
 require('dotenv').config()
+const config = require('config.json')
 const client = new WebhookClient({ id: process.env.ID, token: process.env.TOKEN });
 // import puppeteer
 const puppeteer = require('puppeteer');
@@ -10,7 +11,7 @@ async function fetch() {
     // launch puppeteer
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    await page.goto('https://www.gsmarena.com/news.php3');
+    await page.goto(config.link);
     // get all the news titles
     const titles = await page.evaluate(() => {
         const news = document.querySelectorAll('.news-item');
@@ -51,7 +52,7 @@ let oldLinks = [];
         const newLinks = links.filter((link) => !oldLinks.includes(link));
         if (newLinks.length > 0) {
             // send the new links
-            client.send(`Latest News: ${newLinks.join(' ')}`);
+            client.send(`${config.text} ${newLinks.join(' ')}`);
             l.debug('Sent new links');
         } else {
             l.error("No new links");
