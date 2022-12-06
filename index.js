@@ -35,10 +35,16 @@ async function fetch() {
         })
         return links
     })
+    const realme = titles.filter((title) => { return title.includes('Realme') })
+    console.log(realme);
+    // get the links for the realme
+    const realmeLinks = links.filter((link) => { return link.includes('realme') })
+    console.log(realmeLinks);
     await browser.close();
     return links
 }
-function run() {
+let oldLinks = [];
+setInterval(() => {
     l.info('Starting');
     fetch().then((links) => {
         // check if there are any new links
@@ -52,13 +58,6 @@ function run() {
             return;
         }
         // set the old links to the new links
-        oldLinks += links;
-        // remove duplicates
-        oldLinks = [...new Set(oldLinks)];
+        oldLinks = links;
     }).catch((err) => console.log(err));
-}
-let oldLinks = [];
-run()
-setInterval(() => {
-    run()
-}, 600000)
+}, 6000)
