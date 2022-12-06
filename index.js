@@ -60,4 +60,4 @@ setInterval(() => {
         // set the old links to the new links
         oldLinks = links;
     }).catch((err) => console.log(err));
-}, 6000)
+}, 900000)
