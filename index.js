@@ -1,7 +1,8 @@
 const { WebhookClient } = require('discord.js');
 const al = require('@dumpy/andylib');
 const l = new al.logger()
-const client = new WebhookClient({ id: '', token: '' });
+require('dotenv').config()
+const client = new WebhookClient({ id: process.env.ID, token: process.env.TOKEN });
 // import puppeteer
 const puppeteer = require('puppeteer');
 // scrape https://www.gsmarena.com/news.php3
