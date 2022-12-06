@@ -2,7 +2,7 @@ const { WebhookClient } = require('discord.js');
 const al = require('@dumpy/andylib');
 const l = new al.logger()
 require('dotenv').config()
-const config = require('config.json')
+const config = require('./config.json')
 const client = new WebhookClient({ id: process.env.ID, token: process.env.TOKEN });
 // import puppeteer
 const puppeteer = require('puppeteer');
