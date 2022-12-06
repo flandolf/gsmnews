@@ -42,9 +42,25 @@ async function fetch() {
     const realmeLinks = links.filter((link) => { return link.includes('realme') })
     console.log(realmeLinks);
     await browser.close();
-    return links
+    return realmeLinks;
 }
 let oldLinks = [];
+ l.info('Starting');
+    fetch().then((links) => {
+        // check if there are any new links
+        const newLinks = links.filter((link) => !oldLinks.includes(link));
+        if (newLinks.length > 0) {
+            // send the new links
+            client.send(`Latest News: ${newLinks.join(' ')}`);
+            l.debug('Sent new links');
+        } else {
+            l.error("No new links");
+            return;
+        }
+        // set the old links to the new links
+        oldLinks = links;
+    }).catch((err) => console.log(err));
+
 setInterval(() => {
     l.info('Starting');
     fetch().then((links) => {
